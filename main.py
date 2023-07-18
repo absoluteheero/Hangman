@@ -7,3 +7,5 @@ player_name = input("What is your name ?")
 
 player_1 = Player(player_name)
 
+game = Game(player_1)
+game.play_game()
