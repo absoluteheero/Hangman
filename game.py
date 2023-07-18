@@ -1,17 +1,21 @@
 import random
 
 class Game:
-    bank_of_words = ["elephant", "morning", "electronic", ]
+    bank_of_words = ["elephant", "morning", "electronic", "important" , "technology",
+                      "programming", "insurance", "ability", "paperback", "calculator",
+                        "computer", "ordinary", "football", "policeman", "monitor", "surgery",
+                         "foreigner", "transmission", "dictionary", "skating", "boulevard" ]
 
     def __init__(self, player):
         self.player = player
         self.word_to_guess = random.choice(Game.bank_of_words)
         self.number_of_tries = 5
-        self.is_game_over = False
         self.guessed_letters = []
         self.guessed_word = ""
 
     def play_game(self):
+
+        self.initialize_game()
 
         for c in self.word_to_guess:
             self.guessed_letters.append("*")
@@ -19,14 +23,28 @@ class Game:
         self.guessed_word = "".join(self.guessed_letters)
 
         print("Try to guess this " + str(len(self.word_to_guess)) +" letter word " + self.player.name)
-        print(self.word_to_guess)
 
         while self.number_of_tries != 0:
 
             if self.word_to_guess == self.guessed_word:
                 print("Congratulations you won the game !!!")
                 print("The word to guess was indeed \"" + self.word_to_guess + "\"")
-                break
+
+                print("Want to play again ?")
+                print("Choices:")
+                print("1. Yes")
+                print("2. No")
+                choice = input("What do you do?")
+
+                match choice:
+                    case "1":
+                        self.play_game()
+
+                    case "2":
+                        break
+
+
+                
 
             print(self.guessed_word)
             print("You have " + str(self.number_of_tries) + " chances left.")
@@ -44,14 +62,34 @@ class Game:
 
                 case "2":
                     word = input("What is your word guess ?")
-                    break
+                    self.guess_word(word)
 
                 case "3":
                     print("Goodbye !")
                     break
 
         if self.number_of_tries == 0:
-            print("Game Over !")   
+            print("Game Over !")
+            print("Want to play again ?")
+            print("Choices:")
+            print("1. Yes")
+            print("2. No")
+            choice = input("What do you do?")
+
+            match choice:
+                case "1":
+                    self.play_game()
+
+                case "2":
+                    print("Goodbye !")
+                    
+
+    def initialize_game(self):
+        self.word_to_guess = random.choice(Game.bank_of_words)
+        self.number_of_tries = 5
+        self.guessed_letters = []
+        self.guessed_word = ""
+
 
     def guess_letter(self, letter):
         number_of_correct_letters = 0
@@ -63,14 +101,18 @@ class Game:
             if letter == self.word_to_guess[index]:
                 self.guessed_letters[index] = letter
                 self.guessed_word = "".join(self.guessed_letters)
-            
-
-
-        
-    
+                number_of_correct_letters += 1
+ 
+        print("There is " + str(number_of_correct_letters) + " \"" + letter + "\"")
 
 
     def guess_word(self, word):
-        pass
+        if word == self.word_to_guess:
+            self.guessed_word = word
+            return
+            
+        else:
+            self.number_of_tries -= 1
+            
 
     
