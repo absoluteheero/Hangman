@@ -32,10 +32,12 @@ class Game:
         self.guessed_word = "".join(self.guessed_letters)
 
         print(self.player.name + ", try to guess this " + str(len(self.word_to_guess)) +" letter word ")
+        print("\n")
 
         while self.number_of_tries != 0:
 
             if self.word_to_guess == self.guessed_word:
+                print("\n")
                 print("Congratulations you won the game !!!")
                 print("The word to guess was indeed " + Fore.GREEN + self.word_to_guess + Style.RESET_ALL)
 
@@ -43,11 +45,14 @@ class Game:
                 self.play_again()       
 
             print(self.guessed_word)
+            print("\n")
             print("You have " + Fore.RED + str(self.number_of_tries) + Style.RESET_ALL + " chances left.")
+            print("\n")
             print(Fore.GREEN + "Choices" + Style.RESET_ALL)
             print(Fore.YELLOW + "1. Guess a letter")
             print("2. Guess the word")
             print("3. Quit the game" + Style.RESET_ALL)
+            print("\n")
             choice = input("What do you want to do ?")
             
             match choice:
@@ -100,6 +105,7 @@ class Game:
             self.number_of_tries -= 1
 
     def play_again(self):
+        print("\n")
         print("Want to play again ?")
         print(Fore.GREEN + "Choices:" + Style.RESET_ALL)
         print("1. Yes")
