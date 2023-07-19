@@ -1,4 +1,9 @@
 import random
+from colorama import init as colorama_init
+from colorama import Fore
+from colorama import Style
+
+colorama_init()
 
 class Game:
     bank_of_words = ["elephant", "morning", "electronic", "important" , "technology",
@@ -28,14 +33,14 @@ class Game:
 
             if self.word_to_guess == self.guessed_word:
                 print("Congratulations you won the game !!!")
-                print("The word to guess was indeed \"" + self.word_to_guess + "\"")
+                print("The word to guess was indeed " + Fore.GREEN + self.word_to_guess + Style.RESET_ALL)
 
 
                 self.play_again()       
 
             print(self.guessed_word)
             print("You have " + str(self.number_of_tries) + " chances left.")
-            print("Choices:")
+            print(Fore.GREEN + "Choices" + Style.RESET_ALL)
             print("1. Guess a letter")
             print("2. Guess the word")
             print("3. Quit the game")
@@ -52,8 +57,8 @@ class Game:
                     self.guess_word(word)
 
                 case "3":
-                    print("Goodbye !")
-                    break
+                    print(Fore.YELLOW + "Goodbye !" + Style.RESET_ALL)
+                    exit()
 
         if self.number_of_tries == 0:
             print("Game Over !")
@@ -92,7 +97,7 @@ class Game:
 
     def play_again(self):
         print("Want to play again ?")
-        print("Choices:")
+        print(Fore.GREEN + "Choices:" + Style.RESET_ALL)
         print("1. Yes")
         print("2. No")
         choice = input("What do you do?")
@@ -102,7 +107,7 @@ class Game:
                 self.play_game()
 
             case "2":
-                print("Goodbye !")
+                print(Fore.YELLOW + "Goodbye !" + Style.RESET_ALL)
                 exit()
 
             
