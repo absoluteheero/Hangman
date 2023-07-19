@@ -71,7 +71,6 @@ class Game:
 
     def initialize_game(self):
         self.word_to_guess = random.choice(Game.words)
-        print(self.word_to_guess)
         self.number_of_tries = 5
         self.guessed_letters = []
         self.guessed_word = ""
