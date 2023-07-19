@@ -30,21 +30,8 @@ class Game:
                 print("Congratulations you won the game !!!")
                 print("The word to guess was indeed \"" + self.word_to_guess + "\"")
 
-                print("Want to play again ?")
-                print("Choices:")
-                print("1. Yes")
-                print("2. No")
-                choice = input("What do you do?")
 
-                match choice:
-                    case "1":
-                        self.play_game()
-
-                    case "2":
-                        break
-
-
-                
+                self.play_again()       
 
             print(self.guessed_word)
             print("You have " + str(self.number_of_tries) + " chances left.")
@@ -70,18 +57,7 @@ class Game:
 
         if self.number_of_tries == 0:
             print("Game Over !")
-            print("Want to play again ?")
-            print("Choices:")
-            print("1. Yes")
-            print("2. No")
-            choice = input("What do you do?")
-
-            match choice:
-                case "1":
-                    self.play_game()
-
-                case "2":
-                    print("Goodbye !")
+            self.play_again()
                     
 
     def initialize_game(self):
@@ -113,6 +89,22 @@ class Game:
             
         else:
             self.number_of_tries -= 1
+
+    def play_again(self):
+        print("Want to play again ?")
+        print("Choices:")
+        print("1. Yes")
+        print("2. No")
+        choice = input("What do you do?")
+
+        match choice:
+            case "1":
+                self.play_game()
+
+            case "2":
+                print("Goodbye !")
+                exit()
+
             
 
     
