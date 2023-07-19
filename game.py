@@ -31,7 +31,7 @@ class Game:
 
         self.guessed_word = "".join(self.guessed_letters)
 
-        print("Try to guess this " + str(len(self.word_to_guess)) +" letter word " + self.player.name)
+        print(self.player.name + ", try to guess this " + str(len(self.word_to_guess)) +" letter word ")
 
         while self.number_of_tries != 0:
 
