@@ -2,21 +2,24 @@ import random
 from colorama import init as colorama_init
 from colorama import Fore
 from colorama import Style
-import requests
+import urllib.request
 
 
 
 colorama_init()
 
 class Game:
+
+    
     
     word_site = "https://www.mit.edu/~ecprice/wordlist.10000"
-    response = requests.get(word_site)
-    WORDS = response.content.splitlines()
+    response = urllib.request.urlopen(word_site)
+    long_txt = response.read().decode()
+    words = long_txt.splitlines()
 
     def __init__(self, player):
         self.player = player
-        self.word_to_guess = random.choice(Game.WORDS)
+        self.word_to_guess = ""
         self.number_of_tries = 5
         self.guessed_letters = []
         self.guessed_word = ""
@@ -69,7 +72,8 @@ class Game:
                     
 
     def initialize_game(self):
-        self.word_to_guess = random.choice(Game.bank_of_words)
+        self.word_to_guess = random.choice(Game.words)
+        print(self.word_to_guess)
         self.number_of_tries = 5
         self.guessed_letters = []
         self.guessed_word = ""
