@@ -10,8 +10,6 @@ colorama_init()
 
 class Game:
 
-    
-    
     word_site = "https://www.mit.edu/~ecprice/wordlist.10000"
     response = urllib.request.urlopen(word_site)
     long_txt = response.read().decode()
