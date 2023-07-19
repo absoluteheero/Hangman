@@ -39,11 +39,11 @@ class Game:
                 self.play_again()       
 
             print(self.guessed_word)
-            print("You have " + str(self.number_of_tries) + " chances left.")
+            print("You have " + Fore.RED + str(self.number_of_tries) + Style.RESET_ALL + " chances left.")
             print(Fore.GREEN + "Choices" + Style.RESET_ALL)
-            print("1. Guess a letter")
+            print(Fore.YELLOW + "1. Guess a letter")
             print("2. Guess the word")
-            print("3. Quit the game")
+            print("3. Quit the game" + Style.RESET_ALL)
             choice = input("What do you want to do ?")
             
             match choice:
@@ -61,7 +61,7 @@ class Game:
                     exit()
 
         if self.number_of_tries == 0:
-            print("Game Over !")
+            print(Fore.RED + "Game Over !" + Style.RESET_ALL)
             self.play_again()
                     
 
