@@ -65,7 +65,7 @@ class Game:
                     exit()
 
         if self.number_of_tries == 0:
-            print(Fore.RED + "Game Over !" + Style.RESET_ALL)
+            print(Fore.RED + "Game Over !" + Style.RESET_ALL + " The word was " + Fore.RED + self.word_to_guess + Style.RESET_ALL)
             self.play_again()
                     
 
