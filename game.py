@@ -3,7 +3,7 @@ from colorama import init as colorama_init
 from colorama import Fore
 from colorama import Style
 import urllib.request
-import os
+from os import system, name
 
 
 
@@ -96,7 +96,7 @@ class Game:
 
 
     def guess_letter(self, letter):
-        os.system("cls")
+        self.clear()
         self.show_logo()
         guess = letter.lower()
         number_of_correct_letters = 0
@@ -135,12 +135,21 @@ class Game:
 
         match choice:
             case "1":
-                os.system("cls")
+                self.clear()
                 self.play_game()
 
             case "2":
                 print(Fore.YELLOW + "Goodbye !" + Style.RESET_ALL)
                 exit()
+
+    def clear(self):
+        # for windows
+        if name == 'nt':
+            _ = system('cls')
+ 
+    # for mac and linux(here, os.name is 'posix')
+        else:
+            _ = system('clear')
 
 
     def show_logo(self):
