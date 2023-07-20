@@ -14,6 +14,12 @@ class Game:
     response = urllib.request.urlopen(word_site)
     long_txt = response.read().decode()
     words = long_txt.splitlines()
+    filtered_words = []
+    
+    for word in words:
+        if len(word) > 6:
+            filtered_words.append(word)
+            
 
     def __init__(self, player):
         self.player = player
@@ -75,7 +81,7 @@ class Game:
                     
 
     def initialize_game(self):
-        self.word_to_guess = random.choice(Game.words)
+        self.word_to_guess = random.choice(Game.filtered_words)
         self.number_of_tries = 5
         self.guessed_letters = []
         self.guessed_word = ""
