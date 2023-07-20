@@ -3,6 +3,7 @@ from colorama import init as colorama_init
 from colorama import Fore
 from colorama import Style
 import urllib.request
+import os
 
 
 
@@ -52,7 +53,8 @@ class Game:
                 print("The word to guess was indeed " + Fore.GREEN + self.word_to_guess.upper() + Style.RESET_ALL)
 
 
-                self.play_again()       
+                self.play_again()
+
 
             print(self.guessed_word)
             print("\n")
@@ -94,7 +96,8 @@ class Game:
 
 
     def guess_letter(self, letter):
-        
+        os.system("cls")
+        self.show_logo()
         guess = letter.lower()
         number_of_correct_letters = 0
         if guess not in self.guesses:
@@ -132,6 +135,7 @@ class Game:
 
         match choice:
             case "1":
+                os.system("cls")
                 self.play_game()
 
             case "2":
