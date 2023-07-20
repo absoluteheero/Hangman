@@ -117,6 +117,8 @@ class Game:
 
 
     def guess_word(self, word):
+        self.clear()
+        self.show_logo()
         if word == self.word_to_guess:
             self.guessed_word = word
             return
