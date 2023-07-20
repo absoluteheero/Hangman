@@ -6,7 +6,6 @@ import urllib.request
 from os import system, name
 
 
-
 colorama_init()
 
 class Game:
