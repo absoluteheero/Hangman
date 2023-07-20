@@ -14,6 +14,12 @@ class Game:
     response = urllib.request.urlopen(word_site)
     long_txt = response.read().decode()
     words = long_txt.splitlines()
+    filtered_words = []
+    
+    for word in words:
+        if len(word) > 6:
+            filtered_words.append(word)
+            
 
     def __init__(self, player):
         self.player = player
@@ -21,6 +27,7 @@ class Game:
         self.number_of_tries = 5
         self.guessed_letters = []
         self.guessed_word = ""
+        self.guesses = []
 
     def play_game(self):
 
@@ -48,7 +55,8 @@ class Game:
             print(self.guessed_word)
             print("\n")
             print("You have " + Fore.RED + str(self.number_of_tries) + Style.RESET_ALL + " chances left.")
-            print("\n")
+            print("Letters already taken:")
+            print(self.guesses)
             print(Fore.GREEN + "Choices" + Style.RESET_ALL)
             print(Fore.YELLOW + "1. Guess a letter")
             print("2. Guess the word")
@@ -76,16 +84,22 @@ class Game:
                     
 
     def initialize_game(self):
-        self.word_to_guess = random.choice(Game.words)
+        self.word_to_guess = random.choice(Game.filtered_words)
         self.number_of_tries = 5
         self.guessed_letters = []
         self.guessed_word = ""
+        self.guesses =[]
 
 
     def guess_letter(self, letter):
+        
         number_of_correct_letters = 0
+        if letter not in self.guesses:
+            self.guesses.append(letter)
+            
         if letter not in self.word_to_guess or letter in self.guessed_letters:
             self.number_of_tries -= 1
+            print("There is no " + Fore.RED + letter + Style.RESET_ALL)
             return
 
         for index in range(0,len(self.word_to_guess)):
@@ -94,7 +108,7 @@ class Game:
                 self.guessed_word = "".join(self.guessed_letters)
                 number_of_correct_letters += 1
  
-        print("There is " + str(number_of_correct_letters) + " \"" + letter + "\"")
+        print("There is " + str(number_of_correct_letters) + " " + Fore.GREEN + letter + Style.RESET_ALL)
 
 
     def guess_word(self, word):
