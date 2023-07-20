@@ -47,7 +47,7 @@ class Game:
             if self.word_to_guess == self.guessed_word:
                 print("\n")
                 print("Congratulations you won the game !!!")
-                print("The word to guess was indeed " + Fore.GREEN + self.word_to_guess + Style.RESET_ALL)
+                print("The word to guess was indeed " + Fore.GREEN + self.word_to_guess.upper() + Style.RESET_ALL)
 
 
                 self.play_again()       
@@ -79,7 +79,7 @@ class Game:
                     exit()
 
         if self.number_of_tries == 0:
-            print(Fore.RED + "Game Over !" + Style.RESET_ALL + " The word was " + Fore.RED + self.word_to_guess + Style.RESET_ALL)
+            print(Fore.RED + "Game Over !" + Style.RESET_ALL + " The word was " + Fore.RED + self.word_to_guess.upper() + Style.RESET_ALL)
             self.play_again()
                     
 
@@ -93,22 +93,23 @@ class Game:
 
     def guess_letter(self, letter):
         
+        guess = letter.lower()
         number_of_correct_letters = 0
-        if letter not in self.guesses:
-            self.guesses.append(letter)
+        if guess not in self.guesses:
+            self.guesses.append(guess)
             
-        if letter not in self.word_to_guess or letter in self.guessed_letters:
+        if guess not in self.word_to_guess or guess in self.guessed_letters:
             self.number_of_tries -= 1
-            print("There is no " + Fore.RED + letter + Style.RESET_ALL)
+            print("There is no " + Fore.RED + guess.upper() + Style.RESET_ALL)
             return
 
         for index in range(0,len(self.word_to_guess)):
-            if letter == self.word_to_guess[index]:
-                self.guessed_letters[index] = letter
+            if guess == self.word_to_guess[index]:
+                self.guessed_letters[index] = guess
                 self.guessed_word = "".join(self.guessed_letters)
                 number_of_correct_letters += 1
  
-        print("There is " + str(number_of_correct_letters) + " " + Fore.GREEN + letter + Style.RESET_ALL)
+        print("There is " + str(number_of_correct_letters) + " " + Fore.GREEN + guess.upper() + Style.RESET_ALL)
 
 
     def guess_word(self, word):
